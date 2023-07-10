@@ -38,6 +38,9 @@ const getFeed = async (url) => {
   return alerts || [];
 };
 
+// RSS feed URLs from Google Alert
+// see https://www.howtogeek.com/444549/how-to-create-an-rss-feed-from-a-google-alert/
+
 const feedUrls = [
   "https://www.google.com/alerts/feeds/12754239361778858129/11887783294534187044",
   "https://www.google.com/alerts/feeds/12754239361778858129/14212266639972105909",
