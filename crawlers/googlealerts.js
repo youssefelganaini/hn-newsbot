@@ -39,8 +39,10 @@ const getFeed = async (url) => {
 };
 
 const feedUrls = [
-  "https://www.google.com/alerts/feeds/00769464454912018467/4645059982849522980",
-  "https://www.google.com/alerts/feeds/00769464454912018467/15390968116426636717",
+  "https://www.google.com/alerts/feeds/12754239361778858129/11887783294534187044",
+  "https://www.google.com/alerts/feeds/12754239361778858129/14212266639972105909",
+  "https://www.google.com/alerts/feeds/12754239361778858129/6820764745307726346",
+  "https://www.google.com/alerts/feeds/12754239361778858129/13016920313603837827"
 ];
 
 module.exports = async () => {
