@@ -29,6 +29,7 @@ const getFeed = async (url) => {
     return {
       platform_name: "googlealerts",
       platform_id: entry?.id.split(":").pop(),
+      // @youssef: do you know the difference btw. platform_title and website_title?
       platform_title: cleanText(entry?.title["#text"]),
       website_description: cleanText(entry?.content["#text"]),
       website_link: searchParams.get("url"),
