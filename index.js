@@ -1,7 +1,7 @@
 require("dotenv").config();
 
 const { ms, logger } = require("@simpleanalytics/common");
-const sgMail = require('@sendgrid/mail');
+const email = require("./lib/email")
 
 const crawlers = require("./crawlers/index");
 const notify = require("./lib/notify");
@@ -32,25 +32,7 @@ const { NODE_ENV = "development" } = process.env;
     }
 
      //Send message via email
-     const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey('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');
-
-      const msg = {
-        to: 'elganainiyoussef@gmail.com',
-        from: 'user2000burneracc@gmail.com',
-        subject: 'Test Email',
-        text: message,
-        html: `<p>${message}</p>`,
-      };
-
-      sgMail
-        .send(msg)
-        .then(() => {
-          console.log('Email sent successfully');
-        })
-        .catch((error) => {
-          console.error(error.toString());
-        });
+    email("Newsbot started", "Newsbot started up successfully")
 
     //sendmessage(message, { silent: true });
   }
