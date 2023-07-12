@@ -4,3 +4,4 @@ node_modules
 *.zip
 commits/*.json
 .env
+.idea
