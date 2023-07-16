@@ -83,7 +83,7 @@ const query = async (...props) => {
 };
 
 // Assuming you have already defined the 'query' function as provided in the previous code snippet
-
+/* ONLY FOR TESTING PURPOSES
 async function insertExampleData() {
   try {
     if (db === null) {
@@ -138,4 +138,4 @@ const articles = query(db_query).then(result => {
   important = result
 }).catch(error => console.error(error))
 console.log(important)
-
+*/
