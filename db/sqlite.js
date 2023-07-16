@@ -21,7 +21,8 @@ function createTables(db, resolve, reject) {
         interesting_reason TEXT,
         interesting_index INTEGER,
         first_seen TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        alerted_at TIMESTAMP
+        alerted_at TIMESTAMP,
+        characters TEXT
       );
 
       CREATE UNIQUE INDEX IF NOT EXISTS unique_platfrom_id

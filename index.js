@@ -9,7 +9,7 @@ const { loop } = require("./lib/utils");
 const nodemailer = require("nodemailer")
 const { sendmessage } = require("./lib/telegram");
 
-const { NODE_ENV = "development" } = process.env;
+const { NODE_ENV = "production" } = process.env;
 
 (async () => {
   if (NODE_ENV === "production") {
