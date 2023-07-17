@@ -7,7 +7,7 @@ const DATABASE = `${__dirname}/newsalerts-${NODE_ENV}.db`;
 function createTables(db, resolve, reject) {
   db.exec(
     `
-      CREATE TABLE IF NOT EXISTS test_db (
+      CREATE TABLE IF NOT EXISTS articles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         platform_name TEXT NOT NULL,
         platform_id TEXT,
@@ -26,18 +26,18 @@ function createTables(db, resolve, reject) {
       );
 
       CREATE UNIQUE INDEX IF NOT EXISTS unique_platfrom_id
-        ON test_db (platform_id, platform_name);
+        ON articles (platform_id, platform_name);
     `,
     (error) => {
       if (error) return reject(error);
 
       // Add column and silently fail when it already exists
       db.exec(
-        "ALTER TABLE test_db ADD COLUMN interesting_reason TEXT;",
+        "ALTER TABLE articles ADD COLUMN interesting_reason TEXT;",
         () => {}
       );
       db.exec(
-        "ALTER TABLE test_db ADD COLUMN interesting_index INTEGER;",
+        "ALTER TABLE articles ADD COLUMN interesting_index INTEGER;",
         () => {}
       );
 
@@ -83,7 +83,7 @@ const query = async (...props) => {
 };
 
 // Assuming you have already defined the 'query' function as provided in the previous code snippet
-/* ONLY FOR TESTING PURPOSES
+//ONLY FOR TESTING PURPOSES
 async function insertExampleData() {
   try {
     if (db === null) {
@@ -92,9 +92,9 @@ async function insertExampleData() {
 
     const exampleData = {
       platform_name: "Example Platform",
-      platform_id: "example_id_124",
+      platform_id: "example_id_123",
       platform_rank: 5,
-      platform_title: "Example Platform Title 2",
+      platform_title: "Example Platform Title 1",
       platform_points: 1000,
       website_link: "https://example.com",
       website_title: "Example Website",
@@ -107,7 +107,7 @@ async function insertExampleData() {
   
 
     const queryResult = await query(
-      "INSERT INTO test_db (platform_name, platform_id, platform_rank, platform_title, platform_points, website_link, website_title, website_description, keywords, interesting_reason, interesting_index, characters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      "INSERT INTO articles (platform_name, platform_id, platform_rank, platform_title, platform_points, website_link, website_title, website_description, keywords, interesting_reason, interesting_index, characters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
       [
         exampleData.platform_name,
         exampleData.platform_id,
@@ -131,11 +131,13 @@ async function insertExampleData() {
 }
 
 // Call the function to insert the example data
-const db_query = "SELECT * FROM test_db"
+const db_query = "SELECT * FROM articles"
 important = null
 const articles = query(db_query).then(result => {
   console.log(result)
   important = result
 }).catch(error => console.error(error))
 console.log(important)
-*/
+
+
+insertExampleData()
