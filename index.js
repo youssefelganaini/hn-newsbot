@@ -9,7 +9,7 @@ const { loop } = require("./lib/utils");
 const nodemailer = require("nodemailer")
 const { sendmessage } = require("./lib/telegram");
 
-const { NODE_ENV = "development" } = process.env;
+const { NODE_ENV = "development", SENDGRID_API_KEY, SENDGRID_RECIPIENT } = process.env;
 
 (async () => {
   if (NODE_ENV === "production") {
@@ -33,10 +33,10 @@ const { NODE_ENV = "development" } = process.env;
 
      //Send message via email
      const sgMail = require('@sendgrid/mail');
-      sgMail.setApiKey('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');
+      sgMail.setApiKey(SENDGRID_API_KEY);
 
       const msg = {
-        to: 'elganainiyoussef@gmail.com',
+        to: SENDGRID_RECIPIENT,
         from: 'user2000burneracc@gmail.com',
         subject: 'Test Email',
         text: message,
