@@ -29,6 +29,7 @@ const getFeed = async (url) => {
     return {
       platform_name: "googlealerts",
       platform_id: entry?.id.split(":").pop(),
+      // @youssef: do you know the difference btw. platform_title and website_title?
       platform_title: cleanText(entry?.title["#text"]),
       website_description: cleanText(entry?.content["#text"]),
       website_link: searchParams.get("url"),
@@ -38,9 +39,14 @@ const getFeed = async (url) => {
   return alerts || [];
 };
 
+// RSS feed URLs from Google Alert
+// see https://www.howtogeek.com/444549/how-to-create-an-rss-feed-from-a-google-alert/
+
 const feedUrls = [
-  "https://www.google.com/alerts/feeds/00769464454912018467/4645059982849522980",
-  "https://www.google.com/alerts/feeds/00769464454912018467/15390968116426636717",
+  "https://www.google.com/alerts/feeds/12754239361778858129/11887783294534187044",
+  "https://www.google.com/alerts/feeds/12754239361778858129/14212266639972105909",
+  "https://www.google.com/alerts/feeds/12754239361778858129/6820764745307726346",
+  "https://www.google.com/alerts/feeds/12754239361778858129/13016920313603837827"
 ];
 
 module.exports = async () => {

@@ -1,10 +1,12 @@
 require("dotenv").config();
 
 const { ms, logger } = require("@simpleanalytics/common");
+const email = require("./lib/email")
 
 const crawlers = require("./crawlers/index");
 const notify = require("./lib/notify");
 const { loop } = require("./lib/utils");
+const nodemailer = require("nodemailer")
 const { sendmessage } = require("./lib/telegram");
 
 const { NODE_ENV = "development" } = process.env;
@@ -29,7 +31,10 @@ const { NODE_ENV = "development" } = process.env;
       logger.error(error);
     }
 
-    sendmessage(message, { silent: true });
+     //Send message via email
+    email("Newsbot started", "Newsbot started up successfully")
+
+    //sendmessage(message, { silent: true });
   }
 
   loop(crawlers, { interval: ms.second * 90 });
