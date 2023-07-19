@@ -6,11 +6,7 @@ const crawlers = require("./crawlers/index");
 const notify = require("./lib/notify");
 const { loop } = require("./lib/utils");
 
-<<<<<<< HEAD
 const { NODE_ENV = "production" } = process.env;
-=======
-const { NODE_ENV = "development", SENDGRID_API_KEY, SENDGRID_RECIPIENT } = process.env;
->>>>>>> corbado_testing_improvement_vincent
 
 (async () => {
   if (NODE_ENV === "production") {
