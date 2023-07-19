@@ -1,5 +1,3 @@
-const { logger } = require("@simpleanalytics/common");
-
 const { query } = require("../db/sqlite");
 const {
   launch,
@@ -24,7 +22,7 @@ module.exports = async () => {
       if (Array.isArray(hackernewsArticles))
         articles.push(...hackernewsArticles);
     } catch (error) {
-      logger.error(error);
+      console.log(error);
     }
 
     try {
@@ -32,7 +30,7 @@ module.exports = async () => {
       if (Array.isArray(googlealertsArticles))
         articles.push(...googlealertsArticles);
     } catch (error) {
-      logger.error(error);
+      console.log(error);
     }
 
     const wheres = articles.map(({ platform_id, platform_name }) => {
@@ -107,7 +105,7 @@ module.exports = async () => {
             if (meta.title) title = meta.title;
             if (meta.description) description = meta.description;
           } catch (error) {
-            logger.error(error);
+            console.log(error);
           }
         }
 
@@ -162,7 +160,7 @@ module.exports = async () => {
       }
     }
   } catch (error) {
-    logger.error(error);
+    console.log(error);
   } finally {
     if (!cluster) return;
     await cluster.idle();

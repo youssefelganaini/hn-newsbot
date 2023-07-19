@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const { ms, logger } = require("@simpleanalytics/common");
+const { ms } = require("@simpleanalytics/common");
 const {email} = require("./lib/email")
 const crawlers = require("./crawlers/index");
 const notify = require("./lib/notify");
@@ -25,7 +25,7 @@ const { NODE_ENV = "production" } = process.env;
         url ? `<a href="${url}">GitHub</a>` : ""
       }`;
     } catch (error) {
-      logger.error(error);
+      console.log(error);
     }
 
     console.log("TESTING -----")

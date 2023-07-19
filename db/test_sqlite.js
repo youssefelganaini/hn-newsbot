@@ -1,4 +1,3 @@
-const { logger } = require("@simpleanalytics/common");
 const sqlite3 = require("sqlite3");
 
 const { NODE_ENV = "development" } = process.env;
@@ -78,7 +77,7 @@ const query = async (...props) => {
       });
     });
   } catch (error) {
-    logger.error(error);
+    console.log(error);
   }
 };
 

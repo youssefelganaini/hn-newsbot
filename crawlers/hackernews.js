@@ -1,4 +1,3 @@
-const { logger } = require("@simpleanalytics/common");
 const { getJSON } = require("../lib/request");
 const { cleanText } = require("../lib/utils");
 
@@ -43,6 +42,6 @@ module.exports = async () => {
 
     return articles;
   } catch (error) {
-    logger.error(error);
+    console.log(error);
   }
 };
