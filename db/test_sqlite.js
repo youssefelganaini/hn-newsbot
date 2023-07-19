@@ -65,7 +65,7 @@ const getDatabase = () =>
 
 let db = null;
 
-module.exports.query = async (...props) => {
+const query = async (...props) => {
   try {
     if (db === null) {
       db = await getDatabase();
@@ -81,3 +81,63 @@ module.exports.query = async (...props) => {
     logger.error(error);
   }
 };
+
+// Assuming you have already defined the 'query' function as provided in the previous code snippet
+//ONLY FOR TESTING PURPOSES
+async function insertExampleData() {
+  try {
+    if (db === null) {
+      db = await getDatabase();
+    }
+
+    const exampleData = {
+      platform_name: "Example Platform",
+      platform_id: "example_id_123",
+      platform_rank: 5,
+      platform_title: "Example Platform Title 1",
+      platform_points: 1000,
+      website_link: "https://example.com",
+      website_title: "Example Website",
+      website_description: "This is an example website",
+      keywords: "example, test, data",
+      interesting_reason: "This platform is interesting because...",
+      interesting_index: 90,
+      characters: "Example characters or details",
+    };
+  
+
+    const queryResult = await query(
+      "INSERT INTO articles (platform_name, platform_id, platform_rank, platform_title, platform_points, website_link, website_title, website_description, keywords, interesting_reason, interesting_index, characters) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+      [
+        exampleData.platform_name,
+        exampleData.platform_id,
+        exampleData.platform_rank,
+        exampleData.platform_title,
+        exampleData.platform_points,
+        exampleData.website_link,
+        exampleData.website_title,
+        exampleData.website_description,
+        exampleData.keywords,
+        exampleData.interesting_reason,
+        exampleData.interesting_index,
+        exampleData.characters,
+      ]
+    );
+
+    console.log("Data inserted successfully:", queryResult);
+  } catch (error) {
+    console.error("Error inserting data:", error);
+  }
+}
+
+// Call the function to insert the example data
+const db_query = "SELECT * FROM articles"
+important = null
+const articles = query(db_query).then(result => {
+  console.log(result)
+  important = result
+}).catch(error => console.error(error))
+console.log(important)
+
+
+insertExampleData()

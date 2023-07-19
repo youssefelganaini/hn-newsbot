@@ -140,10 +140,11 @@ module.exports = async () => {
                 "website_description",
                 "keywords",
                 "interesting_index",
-                "interesting_reason"
+                "interesting_reason",
+                "characters"
               )
             VALUES
-              (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+              (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
           `,
           article.platform_name,
           article.platform_id,
@@ -155,7 +156,8 @@ module.exports = async () => {
           description,
           keywords.join(","),
           interesting.index,
-          interesting.reason
+          interesting.reason,
+          content
         );
       }
     }
