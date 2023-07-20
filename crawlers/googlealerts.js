@@ -5,14 +5,16 @@ const { cleanText } = require("../lib/utils");
 const PREFIX = "_";
 let lastUpdated = null;
 
+// function gets content from RSS Feed of Google Alerts
 const getFeed = async (url) => {
-  const xml = await getContent(url);
+  const xml = await getContent(url); // HTTP Response
 
   const options = {
     ignoreAttributes: false,
     attributeNamePrefix: PREFIX,
   };
 
+  // Feed returns XML, which is parsed here to a JSON file
   const parser = new XMLParser(options);
   const json = parser.parse(xml);
 
@@ -23,7 +25,8 @@ const getFeed = async (url) => {
   ) {
     return [];
   }
-
+  
+  // extract data for DB from each feed entry, and return them in an array to be
   const alerts = json?.feed?.entry?.map?.((entry) => {
     const { searchParams } = new URL(entry?.link[`${PREFIX}href`]);
     return {
@@ -51,6 +54,8 @@ module.exports = async () => {
   const articles = [];
 
   for (const feedUrl of feedUrls) {
+    // for each feed: send HTTP Request, get XML, parse to JSON, extract data for our DB for  
+    // each entry and add to the array to be returned
     const feed = await getFeed(feedUrl);
     articles.push(...feed);
   }
