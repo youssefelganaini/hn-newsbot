@@ -5,6 +5,27 @@ const { cleanText } = require("../lib/utils");
 const PREFIX = "_";
 let lastUpdated = null;
 
+
+module.exports = async () => {
+
+  /*
+  This function reads the articles from the RSS feed and returns them in structured form for our DB.
+  */
+
+
+  const articles = [];
+
+  for (const feedUrl of feedUrls) {
+    // for each feed: send HTTP Request, get XML, parse to JSON, extract data for our DB for  
+    // each entry and add to the array to be returned
+    const feed = await getFeed(feedUrl);
+    articles.push(...feed);
+  }
+
+  return articles;
+};
+
+
 // function gets content from RSS Feed of Google Alerts
 const getFeed = async (url) => {
   const xml = await getContent(url); // HTTP Response
@@ -26,13 +47,12 @@ const getFeed = async (url) => {
     return [];
   }
   
-  // extract data for DB from each feed entry, and return them in an array to be
+  // extract structured data for DB from each feed entry, and return them in an array to be added later to DB
   const alerts = json?.feed?.entry?.map?.((entry) => {
     const { searchParams } = new URL(entry?.link[`${PREFIX}href`]);
     return {
       platform_name: "googlealerts",
       platform_id: entry?.id.split(":").pop(),
-      // @youssef: do you know the difference btw. platform_title and website_title?
       platform_title: cleanText(entry?.title["#text"]),
       website_description: cleanText(entry?.content["#text"]),
       website_link: searchParams.get("url"),
@@ -49,16 +69,3 @@ const feedUrls = [
   "https://www.google.com/alerts/feeds/14933527979152919165/3216233760496332926",
   "https://www.google.com/alerts/feeds/14933527979152919165/729684204002357990",
 ];
-
-module.exports = async () => {
-  const articles = [];
-
-  for (const feedUrl of feedUrls) {
-    // for each feed: send HTTP Request, get XML, parse to JSON, extract data for our DB for  
-    // each entry and add to the array to be returned
-    const feed = await getFeed(feedUrl);
-    articles.push(...feed);
-  }
-
-  return articles;
-};

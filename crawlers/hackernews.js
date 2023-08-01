@@ -6,7 +6,15 @@ const { NODE_ENV = "development" } = process.env;
 const TOP_HN_LIMIT = NODE_ENV === "development" ? 10 : 60;
 
 module.exports = async () => {
+
+  /*
+  This function returns the top stories from HackerNews in a structured form for our DB
+  */
+
+  
   try {
+
+    // get the top HN_LIMIT Stories from Hacker News
     const topstories = await getJSON(
       "https://hacker-news.firebaseio.com/v0/topstories.json"
     );
@@ -19,10 +27,12 @@ module.exports = async () => {
       .slice(0, TOP_HN_LIMIT);
 
     const articles = [];
-
+      
+    // we push each article we return in ranked to the articles list in form of 
+    // structured data to entered later in DB
     for (const { id, rank } of ranked) {
       const story = await getJSON(
-        `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+        `https://hacker-news.firebaseio.com/v0/item/${id}.json` // get corresponding article from HN
       );
 
       const isAskHn = !story.url;

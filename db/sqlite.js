@@ -3,6 +3,31 @@ const sqlite3 = require("sqlite3");
 const { NODE_ENV = "development" } = process.env;
 const DATABASE = `${__dirname}/newsalerts-${NODE_ENV}.db`;
 
+/*
+  This function 
+  1. Checks if there is a database, and if not creates one
+  2. Executes the given SQL query
+ */
+
+module.exports.query = async (...props) => {
+  try {
+    if (db === null) {
+      db = await getDatabase();
+    }
+
+    // executes given query
+    return new Promise((resolve, reject) => {
+      db.all(...props, function (error, tables) {
+        if (error) reject(error);
+        resolve(tables);
+      });
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// only necessary for initiliazation
 function createTables(db, resolve, reject) {
   db.exec(
     `
@@ -45,6 +70,7 @@ function createTables(db, resolve, reject) {
   );
 }
 
+// checks if database exists at given address => then opens in read/write mode, else creates new one
 const getDatabase = () =>
   new Promise((resolve, reject) => {
     const db = new sqlite3.Database(
@@ -54,6 +80,7 @@ const getDatabase = () =>
         if (error) {
           reject(error);
         } else if (error === null) {
+          // only for initalization
           return createTables(db, resolve, reject);
         } else {
           reject(new Error("Unknown sqlite3 error"));
@@ -63,20 +90,3 @@ const getDatabase = () =>
   });
 
 let db = null;
-
-module.exports.query = async (...props) => {
-  try {
-    if (db === null) {
-      db = await getDatabase();
-    }
-
-    return new Promise((resolve, reject) => {
-      db.all(...props, function (error, tables) {
-        if (error) reject(error);
-        resolve(tables);
-      });
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
