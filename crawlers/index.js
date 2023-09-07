@@ -60,6 +60,8 @@ module.exports = async () => {
     );
 
     for (const article of articles) {
+      console.log(article)
+      console.log("here")
       const savedArticle = savedArticles.find(
         ({ platform_name, platform_id }) =>
           platform_id === article.platform_id &&
@@ -72,7 +74,7 @@ module.exports = async () => {
         article.platform_points === savedArticle.platform_points &&
         article.platform_title === savedArticle.platform_title &&
         article.website_link === savedArticle.website_link &&
-        article.platform_rank >= savedArticle.platform_rank 
+        article.platform_rank >= savedArticle.platform_rank
         //proposed change: article.platform_rank === savedArticle.platform_rank 
         // @Vincent: why do we not do anything if the rank decreases?? we only update if rank increases. Any ideas?
       ) {
@@ -146,6 +148,7 @@ module.exports = async () => {
           content: content?.slice?.(0, 3000) || "",
         });
 
+        console.log(article)
         // create SQL query to insert into DB
         await query(
           `
