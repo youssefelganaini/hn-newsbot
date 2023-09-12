@@ -69,4 +69,8 @@ const getFeed = async (url) => {
 const feedUrls = [
   "https://www.google.com/alerts/feeds/14071806628045407587/15467016584903251895",
   "https://www.google.com/alerts/feeds/14071806628045407587/11304386862920147789",
+  "https://www.google.com/alerts/feeds/14071806628045407587/8089749364871930633",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14149218452270765667",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14560884751654479063",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14560884751654478823",
 ];
