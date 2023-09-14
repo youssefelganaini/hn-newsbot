@@ -63,7 +63,6 @@ module.exports = async () => {
 
     for (const article of articles) {
       console.log(article)
-      console.log("here")
       const savedArticle = savedArticles.find(
         ({ platform_name, platform_id }) =>
           platform_id === article.platform_id &&
