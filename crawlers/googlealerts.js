@@ -19,6 +19,7 @@ module.exports = async () => {
     // for each feed: send HTTP Request, get XML, parse to JSON, extract data for our DB for  
     // each entry and add to the array to be returned
     const feed = await getFeed(feedUrl);
+    console.log("Google Alerts feed " + feed)
     articles.push(...feed);
   }
 
@@ -66,6 +67,10 @@ const getFeed = async (url) => {
 // see https://www.howtogeek.com/444549/how-to-create-an-rss-feed-from-a-google-alert/
 
 const feedUrls = [
-  "https://www.google.com/alerts/feeds/14933527979152919165/3216233760496332926",
-  "https://www.google.com/alerts/feeds/14933527979152919165/729684204002357990",
+  "https://www.google.com/alerts/feeds/14071806628045407587/15467016584903251895",
+  "https://www.google.com/alerts/feeds/14071806628045407587/11304386862920147789",
+  "https://www.google.com/alerts/feeds/14071806628045407587/8089749364871930633",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14149218452270765667",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14560884751654479063",
+  "https://www.google.com/alerts/feeds/14071806628045407587/14560884751654478823",
 ];

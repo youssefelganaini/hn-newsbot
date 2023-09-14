@@ -32,11 +32,13 @@ module.exports = async () => {
     } catch (error) {
       console.log(error);
     }
+    
 
     try {
       // add google alerts articles to array
       const googlealertsArticles = await googlealerts();
       if (Array.isArray(googlealertsArticles))
+        console.log(googlealertsArticles)
         articles.push(...googlealertsArticles);
     } catch (error) {
       console.log(error);
