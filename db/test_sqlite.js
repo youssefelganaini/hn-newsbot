@@ -133,7 +133,7 @@ async function insertExampleData() {
 const db_query = "SELECT * FROM articles"
 important = null
 const articles = query(db_query).then(result => {
-  console.log(result)
+  //console.log(result)
   important = result
 }).catch(error => console.error(error))
 console.log(important)

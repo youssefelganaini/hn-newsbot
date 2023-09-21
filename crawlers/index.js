@@ -38,7 +38,7 @@ module.exports = async () => {
       // add google alerts articles to array
       const googlealertsArticles = await googlealerts();
       if (Array.isArray(googlealertsArticles))
-        console.log(googlealertsArticles)
+        // console.log(googlealertsArticles)
         articles.push(...googlealertsArticles);
     } catch (error) {
       console.log(error);
@@ -62,7 +62,7 @@ module.exports = async () => {
     );
 
     for (const article of articles) {
-      console.log(article)
+      // console.log(article)
       const savedArticle = savedArticles.find(
         ({ platform_name, platform_id }) =>
           platform_id === article.platform_id &&
@@ -149,7 +149,7 @@ module.exports = async () => {
           content: content?.slice?.(0, 3000) || "",
         });
 
-        console.log(article)
+        //console.log(article)
         // create SQL query to insert into DB
         await query(
           `

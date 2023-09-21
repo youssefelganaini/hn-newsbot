@@ -45,7 +45,8 @@ RUN apt-get update && apt-get install -yq \
     xdg-utils \
     wget \
     gnupg \
-    libatk-bridge2.0-0
+    libatk-bridge2.0-0 \
+    sqlite3
 
 # copy dependencies from package.json and package-lock.json
 COPY package*.json ./

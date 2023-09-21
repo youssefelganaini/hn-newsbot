@@ -19,7 +19,7 @@ module.exports = async () => {
     // for each feed: send HTTP Request, get XML, parse to JSON, extract data for our DB for  
     // each entry and add to the array to be returned
     const feed = await getFeed(feedUrl);
-    console.log("Google Alerts feed " + feed)
+    //console.log("Google Alerts feed " + feed)
     articles.push(...feed);
   }
 
