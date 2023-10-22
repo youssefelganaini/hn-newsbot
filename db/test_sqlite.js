@@ -136,7 +136,7 @@ const articles = query(db_query).then(result => {
   //console.log(result)
   important = result
 }).catch(error => console.error(error))
-console.log(important)
+console.log("IMPORTANT: ", important)
 
 
 insertExampleData()

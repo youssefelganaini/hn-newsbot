@@ -51,6 +51,7 @@ const getFeed = async (url) => {
   // extract structured data for DB from each feed entry, and return them in an array to be added later to DB
   const alerts = json?.feed?.entry?.map?.((entry) => {
     const { searchParams } = new URL(entry?.link[`${PREFIX}href`]);
+  //  console.log ("Entry is in googlealerts.js: ", entry)
     return {
       platform_name: "googlealerts",
       platform_id: entry?.id.split(":").pop(),

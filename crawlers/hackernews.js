@@ -38,6 +38,8 @@ module.exports = async () => {
       const isAskHn = !story.url;
       if (isAskHn) story.url = `https://news.ycombinator.com/item?id=${id}`;
 
+     // console.log("HN story is: ", story.text)
+
       articles.push({
         platform_name: "hackernews",
         platform_id: id,

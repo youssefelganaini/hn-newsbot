@@ -38,7 +38,6 @@ module.exports = async () => {
       // add google alerts articles to array
       const googlealertsArticles = await googlealerts();
       if (Array.isArray(googlealertsArticles))
-        // console.log(googlealertsArticles)
         articles.push(...googlealertsArticles);
     } catch (error) {
       console.log(error);
@@ -108,7 +107,7 @@ module.exports = async () => {
           article.platform_id
         );
       } else if (!savedArticle) {
-        // if the article doesn't exists, we check if it's not a hacker news article
+        // if the article doesn't exist, we check if it's not a hacker news article
         // to get the metadata
         let title = null;
         let description = null;
@@ -142,12 +141,15 @@ module.exports = async () => {
           link: article.website_link,
           content: content?.slice?.(0, 3000) || "",
         });
+     //   console.log("Keywords are: ", keywords)
 
         // get the index with ChatGPT
         const interesting = await interestingIndexArticle({
           link: article.website_link,
           content: content?.slice?.(0, 3000) || "",
         });
+       // console.log("interestingIndex is: ", interesting)
+
 
         //console.log(article)
         // create SQL query to insert into DB
